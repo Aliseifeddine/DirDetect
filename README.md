@@ -1,17 +1,48 @@
-DirDetect is a powerful Bash tool designed for web directory enumeration and HTTP response analysis. Developed by Ali Seif Eddine, this script allows users to scan for vulnerable directories and endpoints on a specified target URL with customizable options for delay, verbosity, and bypass paths.
-Features:
+#DirDetect is a Bash tool for automated directory and path detection on web servers. It allows users to target specific directories, adjust delay between requests, enable verbose mode, and includes custom header options for bypassing certain HTTP restrictions.
 
-    User-Friendly Interface: The script guides users through the input process with clear prompts.
-    Targeted Scanning: Users can specify a list of paths to test against a target domain.
-    Custom HTTP Methods: Supports different HTTP methods like GET, POST, PATCH, and TRACE for deeper investigation of responses.
-    Output Logging: Results for each scanned path and custom responses are logged to separate files for easy review.
-    Verbose Mode: Option to run the scan in verbose mode for detailed output on the scanning process.
-    Connection Check: Ensures an internet connection is present before proceeding with operations.
+#Features
 
-Usage:
+    Customizable target paths for directory detection
+    Optional bypass for specific paths
+    Delay control for request throttling
+    Verbose output mode for detailed response info
+    Supports various HTTP methods (GET, POST, PATCH, TRACE)
+    Custom header for potential 403 (Forbidden) bypass
 
-    Clone the repository.
-    Run ./DirDetect.sh in the terminal.
-    Provide the target URL and the file containing paths for scanning.
+#Requirements
 
-Disclaimer: This tool is intended for educational and ethical security testing purposes only. Always ensure you have appropriate permissions before scanning any website.
+    curl and figlet should be installed on the system.
+
+#Installation
+
+1.Clone the repository: git clone https://github.com/your-username/DirDetect.git   
+2.cd DirDetect
+3.Make the script executable: chmod +x DirDetect.sh
+4.Run the script: ./DirDetect.sh
+
+#Usage
+
+To run DirDetect, execute the following command and follow the prompts:
+
+./DirDetect.sh
+
+#Parameters (Interactive)
+
+    Target: Specify the main target URL.
+    List: Specify a default list or upload your own.
+    Specific Path Bypass: Enter a path to bypass with custom headers, or press Enter to skip.
+    Delay Between Requests: Define a delay (e.g., n for no delay).
+    Verbose Mode: Enter Y for detailed output or N for summary mode.
+
+#Example Output
+
+The tool will display response codes and sizes for each path tested, e.g.:
+
+/admin --> 200 --> 5120 bytes
+/custom-path --> 403 --> Forbidden (bypassed with X-Custom-IP-Authorization)
+
+#Notes
+    Verbose mode saves response headers in dedicated files (auth.txt, headers.txt, PATCH.txt, etc.).
+    To bypass 403 restrictions, the tool attempts various headers and HTTP methods on paths that return 403.
+
+    
