@@ -1,3 +1,5 @@
+#This is the first version of our tool, now available on GitHub for you to explore and contribute to!
+
 #DirDetect is a Bash tool for automated directory and path detection on web servers. It allows users to target specific directories, adjust delay between requests, enable verbose mode, and includes custom header options for bypassing certain HTTP restrictions.
 
 #Features
@@ -15,13 +17,13 @@
 
 #Installation
 
-1.Clone the repository: git clone https://github.com/Aliseifeddine/DirDetect.git   
+    1.Clone the repository: git clone https://github.com/Aliseifeddine/DirDetect.git   
 
-2.cd DirDetect
+    2.cd DirDetect
 
-3.Make the script executable: chmod +x DirDetect.sh
+    3.Make the script executable: chmod +x DirDetect.sh
 
-4.Run the script: ./DirDetect.sh
+    4.Run the script: ./DirDetect.sh
 
 #Usage
 
