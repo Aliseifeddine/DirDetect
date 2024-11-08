@@ -16,6 +16,7 @@
 #Installation
 
 1.Clone the repository: git clone https://github.com/Aliseifeddine/DirDetect.git   
+
 2.cd DirDetect
 
 3.Make the script executable: chmod +x DirDetect.sh
@@ -41,7 +42,9 @@ To run DirDetect, execute the following command and follow the prompts:
 The tool will display response codes and sizes for each path tested, e.g.:
 
 /admin --> 200 --> 5120 bytes
+
 /custom-path --> 403 --> Forbidden (bypassed with X-Custom-IP-Authorization)
+
 
 #Notes
     Verbose mode saves response headers in dedicated files (auth.txt, headers.txt, PATCH.txt, etc.).
