@@ -49,7 +49,8 @@ The tool will display response codes and sizes for each path tested, e.g.:
 
 
 #Notes
-    Verbose mode saves response headers in dedicated files (auth.txt, headers.txt, PATCH.txt, etc.).
-    To bypass 403 restrictions, the tool attempts various headers and HTTP methods on paths that return 403.
+    1.Verbose mode saves response headers in dedicated files (auth.txt, headers.txt, PATCH.txt, etc.).
+    2.To bypass 403 restrictions, the tool attempts various headers and HTTP methods on paths that return 403.
+    3.#This revision explicitly mentions the user's ability to upload a custom wordlist while also keeping the option to use the default one. Thank you for your patience!
 
     
