@@ -29,7 +29,7 @@
 
 To run DirDetect, execute the following command and follow the prompts:
 
-./DirDetect.sh
+    ./DirDetect.sh
 
 #Parameters (Interactive)
 
