@@ -43,12 +43,13 @@ To run DirDetect, execute the following command and follow the prompts:
 
 The tool will display response codes and sizes for each path tested, e.g.:
 
-/admin --> 200 --> 5120 bytes
+    /admin --> 200 --> 5120 bytes
 
-/custom-path --> 403 --> Forbidden (bypassed with X-Custom-IP-Authorization)
+    /custom-path --> 403 --> Forbidden (bypassed with X-Custom-IP-Authorization)
 
 
 #Notes
+
 1.Verbose mode saves response headers in dedicated files (auth.txt, headers.txt, PATCH.txt, etc.).
     
 2.To bypass 403 restrictions, the tool attempts various headers and HTTP methods on paths that return 403.
