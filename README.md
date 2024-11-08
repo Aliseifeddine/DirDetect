@@ -17,7 +17,9 @@
 
 1.Clone the repository: git clone https://github.com/Aliseifeddine/DirDetect.git   
 2.cd DirDetect
+
 3.Make the script executable: chmod +x DirDetect.sh
+
 4.Run the script: ./DirDetect.sh
 
 #Usage
