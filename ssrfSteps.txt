@@ -1,0 +1,6 @@
+file:///etc/passwd
+http://127.0.0.1
+ports after ip
+content discovery fuzzing
+http://localhost and ports and fuzz
+bypass @ and #

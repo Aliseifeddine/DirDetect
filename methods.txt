@@ -1,0 +1,16 @@
+    GET
+    POST
+    PUT
+    DELETE
+    HEAD
+    OPTIONS
+    PATCH
+    TRACE
+    CONNECT
+    PROPFIND
+    PROPPATCH
+    MKCOL
+    COPY
+    MOVE
+    LOCK
+    UNLOCK
