@@ -1,0 +1,9 @@
+macchanger -s wlan0 (display my mac)
+ifconfig wlan0 down (down the network)
+macchanger -r wlan0 (random mac address)
+ifconfig wlan0 up
+
+to have a custom mac address
+macchanger -m [MAC] wlan0
+
+

