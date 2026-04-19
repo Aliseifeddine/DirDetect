@@ -1,0 +1,1 @@
+censys search target.com |grep "ip" | egrep -v "description" | cut -d ":" -f 2| tr -d \"\,

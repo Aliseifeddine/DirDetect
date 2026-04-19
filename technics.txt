@@ -1,0 +1,15 @@
+subfinder and assetfinder
+httpx -l sub.txt >> alive
+cat alive |waybackurls >> way
+cat alive |katana -jc >> katana
+cat alive |gau >> gau (we can use waymore tool)(waymore -i url -mode U)
+cat way katana gau | uro >> endpoints.txt
+cat endpoints | gf xss >> params
+cat params | Gxss -p batman -o reflected (gxss check if batman is reflected in sourcecode)
+dalfox file reflected -o vuln
+
+--------------------------------------------------------------------
+if subdomain gives 403
+then we should have the cname then the subdomain will open
+dig https://target.com cname
+
