@@ -1,0 +1,109 @@
+web enumirattion (information gathering)
+-----------------------------------------
+subdomain enumeration (assetfinder and subfinder and sublister)
+cat sub1 sub2 sub3 |sort -u| uniq| tee -a subs.txt
+cat subs.txt|httpx -sc -td -cl -fr >> alive.txt
+nuclei -l subs.txt
+nikto subs.txt
+invastigator and bugbounty helper and manual google dorks
+waybackurls target.com >> way.txt (you can use waymore)
+uro use it for filtration duplicate parameters
+waybackmachine (very important)
+cat alive |katana -jc >> katana
+cat alive |gau >> gau
+cat alive |waybackurls >> way
+cat way katana gau | uro >> endpoints.txt (these steps to enumirate all endpoints and urls in the target)
+gf for every vulnerability 
+dalfox for xss parameters
+LFI (nuclei -l sub.txt -t /root/.local/nuclei-templates/http/vulnerabilities/generic/generic-linux-lfi.yaml -c 30) (discover lfi in all subdomains )
+censys search ( origin ip )
+robots.txt (waybackrobots)
+source code check it carefully
+target.com////google.com( fragment open redirect )
+target.com/etc/passwd
+target.com/batman (check if reflected and then try to find xss )
+Golinkfinder (check all paths and parameters V.important)
+linkfinder (enumirate all urls in the source code )
+paramspider, gau ( enumirate all parameters )
+wapplyzer
+wafw00f (check if there is a waf)
+Content Discovery (DirDetect,ffuf,dirsearch,dirb)
+bypass403, byp4xx (403 directories)
+SPF and DMARC (mail misconfiguration)
+
+--------------------------------------------------------------
+login and signup pages (very important)
+---------------------------------------
+SIGNUP PAGE
+------------
+check for oauth misconfiguration (signup with your email and then signup with same one with google)
+html injection tags and ssti payloads (check email for html injection and ssti and also profile )
+previlage escalation (check signup request carefully and response )
+otp bypass if it exist (check in the response it may be leaked )
+bypass email verification
+JWT if exists
+Arjun (find hidden parameters on signup page )
+Openredirect after signup ( if parameters found )
+Race condition (signup with same email with 2 different passwords)
+0DayVuln (signup with email and then encode a letter and signup another time it may lead to account take over)
+Xss ( get parameters may be reflected in source code )
+Host header injection
+Brute force
+weak Password Policy
+
+LOGIN PAGE
+-----------
+Previlage escalation (check request and response)
+Open redirect (after login)
+Xss (if get parameters are reflected in source code)
+login with wrong password and email to see if a parameter reflect the error (try xss and ssti)
+reponse manipulation (account takeover)
+JWT if exists
+bypass two step verification if exist (2FA)
+Arjun (hidden parameters)
+xss after login if open redirect exists (javascript:alert(0))
+Brute force
+sql injection 
+Rate Limiting
+
+Forget Password Page
+---------------------
+password reset poisining ( host header injection )
+misconfiguration (put an email not registered)
+Arrays in emails (send forgetpassword for more than 1 email in same request)
+check if you can change password with the same token more than 1 time
+Misconfiguration (write an victim email and check the response it may leak sensitive data or tokens)
+
+Profile Page
+------------
+Failure to invalidate session (password change, password reset, enable 2FA)
+Improper cache control
+CSRF (email and password)
+misconfiguration (delete old password parameter and try to set new password)
+SSTI (if any template is used)(check burp and see if there is first.username=batman then there is a template)
+Image Stripped (if profile is public)
+Idor (check if user has and id)
+previlage escalation (intercept the request for the profile and read it carefully it may contain previlages parameters)
+SSRF (if the page contains link input fields try ssrf) (use collaborator)
+Stored Xss (upload svg file if profile is public)
+Dos attack (upload file more than 100 mega)
+RCE ( all attacks ) (Profile and cover photos)
+XXE
+Cors
+Command Injection in filename (Upload a picture and try the Command injection in the name of the picture ) (this can be founded when the picture name is changed after upload)
+Sqli in id of profile (if exist)
+Broken Access Control (delete others profile)
+JWT (all attacks if existed in the profile)
+
+In Shop
+-------
+business login errors (parameter tamper of price and quantity, flaw of items,)
+Stored xss (if you can put comment on the products)
+Sqli (on products id)
+Race condition (on comments)
+0 Star vulnerablity (if there is a rate in stars)
+Command injection (check stock)
+SSRF (check stock) (use collaborator)
+RXSS (if any parameter in the shop is reflected in url)
+Command injection (Subscription by email)
+Idor (add items to another cards)

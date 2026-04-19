@@ -1,0 +1,48 @@
+ Subdomain enumerate (assetfinder,subfinder,amass)
+ stko via subjack
+ httpx
+ cat subdomain.txt|httpx|nuclei -tags salesforce
+ cirrusgo salesforce -u https://example.com/s/sfsites/aura -gobj
+ nuclei -l / nikto
+ Example.com////google.com
+ example.com/etc/passwd
+ example.com/‘*alert(document.location=‘https://evil.com/‘)*‘
+ example.com/robots.txt/waybackrobots
+ Checking js using secretfinder+katana
+checking js manual and searching in it for directories or files  and parameters
+ Checking for allowed methods using OPTIONS
+ Host header injection,cache poisoning,User-Agent sql injection
+ crlf,cors
+ wappalyzer
+ http request smuggling
+ nuclei+jaeles using burp to check for open redirect ,lfi and xss
+ Golinkfinder /js analysis
+ google dork/bugbounty helper/invastigator
+ Directory list
+ image stripped
+ linkfinder
+ ffuf,dirsearch,dirb
+ bypass 403 manual
+ byp4xx,403bypasser
+ graphw00f
+ nuclei deep scan
+ port scaning
+ paramspider
+ kxss
+ gxss
+ ffuf ===> all_attack.txt
+ dalfox
+ fetching paramspider (open redirect,lfi,rfi,dataexpousre,sql,commad os ,ssrf,ssti)
+ cat subdomains.txt | waybackurls | sort -u >>
+waybackdata | gf ssrf | tee -a ssfrparams.txt
+ cat waybackdata | gf redirect | tee -a redirect.txt
+ fetching waybackurl (open
+redirect,lfi,rfi,dataexpousre,sql,commad os,ssrf,ssti)
+ Burp + privilege escalation+improper cache
+control+host header injection+hpp+cors
+ Burp checking (sign up==>(privilege escalation),(Race Condition),
+sign in , forgot password-->host header
+injection(Password Reset) , BLE , Profile,file
+upload==>RCE,xss)
+ profile ( csrf , ssrf , idor ,cook check ID,image
+stripped , dos)
