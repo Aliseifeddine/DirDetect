@@ -1,0 +1,2 @@
+crunch 8 8 1234567890|aircrack-ng -w- -b MAC handshake.cap
+crunch min max (all numbers and symbols and letters lower and upper) |aircrack-ng -w- -b MAC handshake.cap(badda wa2t ktir)

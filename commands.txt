@@ -1,0 +1,23 @@
+apache (search for devices or services that include the term apache especially web servers)
+apache AND nginx (search for both useful for identifying servers running both)
+country:code
+city:name
+port:3389
+hostname:name(target.com)
+org:google (for website organization such as facebook and google)
+os:name (windows linux ....)
+net:CIDR (ip not hostname with ranges)
+vuln:CVE
+ssl:text (example : Let's Encrypt)
+http.title:admin (websites contain in the title admin you can add site:*.target.com http.title:admin)
+http.title:camera -401 (- is for exclusion)
+after:2022-01-01 (after this time)
+before:2022-01-01 (before this time)
+has-ssl:true (results to devices that have ssl certificates helping in identifying secure connections)
+geo:lat,lon (latitude and longitude)
+product:name (nginx)(specific service) (devices running specific product)
+has_vuln:true (results to devices that are known to have vulnerabilities )
+Using Parentheses:(apache OR nginx) AND port:80
+Avoid Results (apache -port:80) (exclude these results)
+Common Vulnerable Ports (port:3389)
+

