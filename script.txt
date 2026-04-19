@@ -1,0 +1,1 @@
+cat js.| while read url; do python3 /home/ali/Desktop/tools/SecretFinder.py -i $url -o cli; done
