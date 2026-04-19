@@ -1,0 +1,189 @@
+
+#!/bin/bash (bi3arif l terminal la oktob bash)
+cp a.sh /usr/local/bin ( bisir fine otloba global)
+# hashtag used for comments
+arguments(from $1 to $9)
+bash doesnot contain space(put space inside double quotations)
+$# number of arguments passed
+eza bade naffiz command(abc=`ls`)(hay back tick not single quote)
+echo $abc (binafezle command l ls)
+fine kamen(abc=$(ls))(binafiz l ls)
+eza bade ma ynafeza(b7ot bein single qoute)
+-e (for any special characters)
+tr -d (trim)
+for colors(echo -e "\e[31mhello world\e[0m")// command for color
+$?(exit status)(to see the last command before if it is executed or not)(0 executed 1 failed)
+in loops(-le lessthan -gt greaterthan -eq equal)
+while [ $i -le 2 ](must contain space after [ and space before ] or it will not be executed)
+<(read from)
+>(save)
+if [ $string1 == $string2 ]
+then
+echo "anything"
+fi(btenhe l if)
+awk(very important)
+ping -c 1 google.com|grep -E "64 bytes"(bilawenle yeha)
+ping -c 1 google.com|awk '/64 byte/' '{print $1}' (mtl l grep)
+ping -c 1 google.com|awk -F '[ ()]' '/64 bytes/ {print $6}'
+ping -c 1 google.com|awk -F '[ ():]' 'NR==2 {print $6}'(nr ya3ne line number)
+stdin(standard input (0))
+stdout(standard output(1))
+stdeer(standard error(2))
+/dev/null(bkob ayya error aw ayyashi mesh 3eyzo b2alba)
+^(bideyit l satr)
+$(niheyit l satr)
+^(eza 7ad l pattern juwa betsir not)([^0-9])
+bel if 3atul heik ba3mil (if [[ 'hello world' =~ hello ]]; then echo "its found"; else echo "not found"; )
+'a{3}'(bibarrim 3al a wein mawjude 3 marrat)
+--------------------------------------------------------------
+curl
+----
+
+curl(very important)
+curl -s http://evil.com(-s ya3ne silent)
+curl -s -o abc.html http://evil.com(l result 7affeza bi abc.html)
+curl -i http://evil.com(bijeble l response ma3 l html(source code))
+curl -I http://evil.com(bas l response bala html)
+curl -L google.com(follow redirect)
+curl -X POST -d "param1=value1&param2=value2" http://example.com/path(-d beb3at l data wel -X request method)
+curl -X POST -H "headername: value" http://example.com(bzeed header)
+curl --max-time 10 http://example.com(kam request bel senye)
+curl -V(betfassele l error li 3am yutla3o)
+tee  /file.txt(tee byu3rudon w bi7afezon bel file)
+______________________________________________________________
+sed
+___
+sed 's/unix/linux/' file.txt(substitute linux with unix first accurance)
+sed 's/unix/linux/2' file.txt(second accurance)
+sed 's/unix/linux/g' file.txt(all words)
+sed -n 's/unix/linux/p' file.txt(substitute and show me only the result)
+sed '1,3 s/unix/linux/g' file.txt(range for lines)
+sed '1d' file.txt(delete line 1)
+sed '$d' file.txt(delete last line)
+sed '1,3d' file.txt(delete lines with range)
+sed -i 's/unix/linux/g' file.txt(-i to save )
+sed 's.unix.linux.' file.txt(change delimiter)
+other delimiters(. space | /)
+sed 's/\bopen\b/close/' file.txt(b means bounderies change word open if there is a space behind it if its opensource donot change it)
+sed 's/open\s/close/' file.txt(eza 7adda space b8ayera)
+sed -n '/put/p' file.txt(search for word put )
+sed -n '/p[oui]t/p' file.txt(pattern)
+sed -n '/\s/p' file.txt(print every lines contain space)
+sed -n '/\\s/p' file.txt(print \s )
+sed -n '/\t/p' file.txt(print line contains tab)
+sed -n '/p.t/p' file.txt(. means one character between p and t)
+sed -n '/\sp.t/p' file.txt(print that contains space)
+sed -n '/\./p' file.txt(line contains .)
+sed -n '/This*/p' file.txt(contain zero or more s at the end of word)
+sed -n '/This\+/p' file.txt(contain at least one s)
+sed 's/put//' file.txt(substitute put with nothing)
+sed 's/^linux/system/' file.txt(replace word linux with system at first of each line)
+sed '/linux/d' file.txt(delete every line contains word linux)
+sed '1i anything' file.txt(add before line 1 anything)
+sed '4a anything' file.txt(add after line 4 the given)
+
+______________________________________________________________
+arrays
+______
+os=('ubuntu' 'window' 'kali')(array)
+echo "${os[@]}"(print everything in array)
+echo "${os[0]}"(print index 0)
+echo "${!os[@]}"(array indexes)
+echo "${#os[@]}"(length of array)
+
+--------------------------------------------------------------
+
+functions
+----------
+function hello(){
+echo "hello world"
+}
+hello(call the function)
+
+fine a3mil function bala kelmit function
+hello(){
+echo "hello world"
+}(Same as above)
+
+another way for function
+
+function () {
+
+}
+
+
+function to show the files with specified extension
+DIR=`ls ./*.txt`
+for i in $DIR
+do
+
+
+echo $i
+
+done
+
+
+
+function with parameters
+function adder(){
+result=$(($1+$2))
+echo "Result is $result"
+
+}
+adder $1 $2
+
+
+
+Scope in functions
+-------------------
+function(){
+local var='local 1'
+
+echo "inside function "
+
+}
+---------------------------------------------------
+override in bash
+-----------------
+ls(){
+command ls -lh
+
+}
+ls
+-------------------------------------------
+time out condition
+------------------
+curl -m 10 http://evil.com (timeout after 10 seconds)(very important)
+
+-----------------------------------------------------
+cookie with curl
+-----------------
+curl -c session.txt -d "uname=test&pass=test" http://testphp.vulnweb.com/userinfo.php (jeble l cookie )
+curl -b session.txt http://testphp.vulnweb.com/userinfo.php (a5ad l cookie men file session.txt)
+curl -b cookie.txt -c cookie.txt http://testphp.vulnweb.com/userinfo.php (bijib l cookie w bya3mil override 3al cookie l adime very important)
+curl -o /dev/null -w "%{http_code}","%{size_download}" http://evil.com 
+-------------------------------------------------------------------------------
+case statement
+--------------
+read age
+case $age in
+30)
+echo "you are in class a";;
+20)
+echo "you are in class b";;
+10)
+echo "you are in class c";;
+*)
+echo "you are not in any class";;
+esac
+--------------------------------------------------------------------
+difference between echo and printf
+-----------------------------------
+%d----->integer
+%i----->integer
+%u----->unsigned integer
+%f----->float
+%s----->string
+%%----->% symbol
+%.1f--->one digital after ,
+
