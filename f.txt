@@ -1,0 +1,15 @@
+DirDetect is a powerful Bash-based tool designed for security professionals engaged in penetration testing and directory discovery. Developed by Ali Seif Eddine, this tool allows users to systematically probe web server directories, identify potential access restrictions, and test various bypass techniques.
+Key Features:
+
+    Network Connectivity Check: Ensures a stable internet connection before starting the scan.
+    Customizable User Prompts: Collects essential inputs such as target URL, directory list, optional bypass paths, request delays, and verbosity preferences.
+    Directory Scanning: Efficiently checks server directories against a supplied list to determine accessibility.
+    Bypass Techniques: Upon encountering a 403 Forbidden response, DirDetect employs various HTTP methods (GET, PATCH, TRACE, POST) and techniques using custom headers to test for potential access bypasses.
+    Detailed Logging: Results, including HTTP status codes and size of responses, are meticulously logged into files for thorough analysis.
+
+Output Options:
+
+    Verbose Mode: Enables detailed output directly to the terminal for real-time monitoring.
+    Batch Processing: Results can be stored in an output file for subsequent review, making it easier to analyze large scans.
+
+DirDetect is an invaluable tool for ethical hackers and security auditors looking to uncover vulnerabilities and misconfigurations in web applications. Take your security assessments to the next level with DirDetect!

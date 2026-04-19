@@ -1,0 +1,5 @@
+ipconfig /displaydns
+retrieve the history from private windows even if it is deleted
+ipconfig /flushdns
+remove all dns 
+

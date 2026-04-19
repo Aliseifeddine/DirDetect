@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>CORS Vulnerability Tester</h1>
+    <p>Enter the target URL below and click "Test CORS".</p>
+    <textarea id="targetUrl" placeholder="https://example.com/api"></textarea>
+    <button onclick="testCORS()">Test CORS</button>
+    <h2>Results</h2>
+    <pre id="results">Results will appear here...</pre>
+
+    <script>
+        async function testCORS() {
+            const url = document.getElementById("targetUrl").value.trim();
+            const results = document.getElementById("results");
+            if (!url) {
+                results.textContent = "Please enter a valid URL.";
+                return;
+            }
+
+            try {
+                // Make a CORS request using a custom Origin
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Origin': 'https://evil.com'
+                    }
+                });
+
+                // Extract relevant headers
+                const allowOrigin = response.headers.get('Access-Control-Allow-Origin');
+                const allowCredentials = response.headers.get('Access-Control-Allow-Credentials');
+
+                // Display results
+                results.textContent = `
+Testing CORS for: ${url}
+
+Status Code: ${response.status}
+
+Access-Control-Allow-Origin: ${allowOrigin || 'Not present'}
+Access-Control-Allow-Credentials: ${allowCredentials || 'Not present'}
+
+Analysis:
+${(allowOrigin === 'https://evil.com' || allowOrigin === '*') ? '[!] Potential CORS vulnerability detected!' : '[-] No obvious CORS vulnerability.'}
+${allowCredentials === 'true' ? '[!] Allows credentials, potential risk!' : ''}
+                `;
+            } catch (error) {
+                results.textContent = `Error testing CORS: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
