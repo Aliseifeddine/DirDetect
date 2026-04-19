@@ -1,0 +1,6 @@
+steganography (the technique of hiding data within an ordinary, nonsecret file or message to avoid detection)
+steghide embed -ef secret -cf flower.jpg(embed secret in image)
+steghide extract -sf image.jpg (extract image and see the secret behind it)
+
+
+

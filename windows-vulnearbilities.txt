@@ -1,0 +1,11 @@
+bluekeep(RDP)		|3389(RDP)
+SMBghost(SMB)		|445(SMB)	
+PrintNightmare(printSpooler)|445(SMB,139 (net bios))	
+zerologon(netlogon)	|445(SMB),135(RPC)
+CVE-2021026855(exchanged)|443(https),25(SMTP),587(SMTP)
+follina(MSDT in office)	|local no specific port
+web server rce vuln	|30(http),443(https)
+			|
+			|	
+			|
+			|

