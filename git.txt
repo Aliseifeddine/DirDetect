@@ -1,0 +1,4 @@
+cd .git
+git status
+git restore .
+git checkout--.

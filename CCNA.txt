@@ -1,0 +1,817 @@
+
+Putty (app needed for real life switch configuration)
+
+*switch
+--------
+*enable
+*configure terminal
+(telnet protocol needed to configure switch remotely from pc with some previlages)
+*enable password hello
+*line vty 0 5 
+*login (activate the login) (login local for username and password exit if you need to put username : username admin password admin)
+*password admin (Note: we can use secret not password if we want the password encrypted immediatly)
+*exit
+*interface vlan 1
+*ip address 192.168.1.100 255.255.255.0
+*no shutdown
+*service password-encryption (password encrypted)
+*line console 0 (enter console line) (line console doesnot support secret mode)
+*password adminpass
+*login(before or after password )
+*copy running-config startup-config (you should be in enable mode)
+
+*reload (to restart the switch)
+
+*Secure Shell or Socket (ssh)
+-----------------------------
+*same as telnet
+*in line vty follow these steps
+*transport output ssh
+*transport input ssh
+*exit from vty line
+*hostname cisco (switch name which is public key for ssh)
+*conf t
+*ip domain-name ridox.com (public key now is cisco.ridox.com and will be encrypted)
+*crypto key generate rsa
+
+for port security
+------------------
+*interface fastEthernet 0/1 ( inerface range fastEthernet 0/1-10 range for all ports to save time)
+*switchport mode access
+*switchport port-security
+*switchport port-security mac-address sticky
+*switchport port-security maximum 1
+*switchport port-security violation (protect or restrict or shutdown)
+*exit
+*write memory 
+*show interfaces status (see the status for interface)
+*interface f0/1 (shutdown int  enter to it )
+*shutdown
+*no shutdown
+
+show commnads
+
+
+*show port-security 
+*show port-security address
+*show port-security interface f 0/1
+*banner motd %welcome to my switch%
+
+*how to use ssh
+*ssh -l username 192.168.1.100 (must use login local all times in ssh )
+
+VLANS
+-----
+*enable
+*show vlan brief
+*configure terminal 
+*vlan 10
+*name it
+*vlan 20
+*name hr
+*vlan 30
+*name ac
+*switchport access vlan 10 (give vlan for interface you should be in the interface)
+*exit
+*exit
+*show vlan brief
+
+dtp (negotiation protocol)
+---------------------------
+*enable
+*show interface g0/1 switchport
+*conf t
+*interfaces gigabitetheret0/1
+*switchport mode trunk
+
+vlan(3 switches )
+-----------------
+*first switch
+*cli
+*enable
+*conf t
+*vlan 10
+*name it
+*exit
+*interface f0/1
+*switch port access vlan 10
+*exit
+*interface f0/2
+*switchport mode trunk
+*Second switch
+*cli   
+*enable
+*conf t   
+*vlan 10  
+*name it
+*exit
+*interface f0/1
+*switch port access vlan 10
+*exit
+*interface f0/2
+*switchport mode trunk 
+*Third switch
+*enable
+*conf t
+*vlan 10
+*name hahaha
+
+VTP (Virtual trunking protocol)
+-------------------------------
+server or client or transparent
+*on server switch
+*conf t
+*hostname server
+*vtp domain libadeye
+*exit
+*show vtp status
+*client switch
+*enable
+*conf t
+*vtp mode client
+*show vtp status
+
+
+Routing
+--------
+2^?>=3 (3 is the number of networks)
+subnet mask will be : 192.168.1.192 (11000000 this is binary presentation 192 is summation of last two bits
+				     first netwwork ip is 192.168.1.0 2^6 is the address for next network and add another 
+					2^6 for third network etc.... )
+Configuration
+--------------
+*enable
+*conf t
+*interface serial 1/0
+*no shutdown (to active the interface) (this step do it between two routers to active the connection between them)
+*also active interfaces for computers as step below
+*interface f0/1 
+*no shutdown
+
+in router
+----------
+*first network
+*enable
+*conf t
+*interface f0/0
+*ip address 192.168.1.1 255.255.255.192
+*no shutdown
+*Second netwrok
+*interface serial 1/0
+*ip address 192.168.1.129 255.255.255.192
+*no shutdown
+*exit
+*interface f0/0 
+*ip address 192.168.1.65 255.255.255.192 (default gateway always give it the first ip)
+*third network the same as first one
+
+*in the two routers we most active the rip 
+*first router
+*router rip
+*version 2
+*network 192.168.1.0
+*network 192.168.1.128 (3arrif kol router 3a jirana)
+*
+*Second router 
+*router rip
+*version 2
+*network 192.168.1.64
+*network 192.168.1.128
+*
+--------------------------------------
+cables
+--------
+brown
+white brown(kahraba)
+green
+white blue
+blue
+white green 
+orange 
+white orange
+
+-------------------------------
+Static and Dynamic routing
+--------------------------
+ip route destination-ip subnetmask source-ip (or exit interface) (static routing)
+
+ip route 0.0.0.0 0.0.0.0 source-ip(or exit interface) (dymanic routing)
+
+ 
+----------------------------
+TFTP
+-----
+copy running-config tftp: (enter)
+server-ip
+filename: backup
+reload
+
+now in the router
+copy tftp: running-config
+server-ip
+backup
+(enter)
+
+------------------------
+FTP
+----
+en conf t
+ip ftp username ridox
+ip ftp password ridox1
+exit
+copy running-config ftp: 
+server-ip
+backup1
+
+now in router after reload
+copy ftp: running-config
+backup1
+(enter)
+
+------------------------------------
+DHCP
+-----
+in router
+(first network)
+en
+conf t
+ip dhcp pool net1
+network 192.168.1.0 255.255.255.128
+dns-server 192.168.1.1 (bira2em l ip for computers)
+default-router 192.168.1.1 (which network)
+exit 
+ip dhcp excluded-address 192.168.1.1 192.168.1.15 (excluded ip )
+
+(second network)
+en
+conf t
+ip dhcp pool net2
+network 192.168.1.128 255.255.255.128
+dns-server 192.168.1.129 (bira2em l ip for computers)
+default-router 192.168.1.129 (which network)
+exit 
+ip dhcp excluded-address 192.168.1.130 192.168.1.145 (excluded ip )
+
+--------------------
+OSPF
+------------
+en 
+conf t
+interface f0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+interface serial 1/0
+ip address 10.0.0.1 255.0.0.0 (since its class A)
+no shutdown 
+exit
+
+router ospf 1
+network 192.168.1.0 0.0.0.255 area 1 (reverse subnet mask in ospf)
+network 10.0.0.1 0.255.255.255 area 1
+
+second router
+- - - - - - - 
+router ospf 2
+network 10.0.0.1 0.255.255.255 area 1
+network 192.168.2.0 0.0.0.255 area 0
+netwrok 11.0.0.0 0.255.255.255 area 2
+exit
+
+third router
+- - - - - - -
+router ospf 3
+network 11.0.0.0 0.255.255.255 area 2
+network 192.168.3.0 0.0.0.255 area 2
+exit
+
+-----------------------------------------------------
+Access list 
+------------
+en
+conf t
+access-list 10 permit 192.168.1.0 0.0.0.255 (same as ospf )
+access-list 10 deny 192.168.2.0 0.0.0.255
+interface f0/0
+ip access-group 10 out
+ip access-group 10 in (same as out but it is better to isolate it from all networks)
+no ip access-group 10 out (eza bade el8iha)
+
+standard
+---------
+
+
+
+
+
+
+
+extended
+---------
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------
+Switch between HR and Acc
+.............................
+enable
+conf terminal
+interface range fastehternet 0/1-3
+switchport mode trunk
+exit
+vtp domain srvr
+vlan 20
+name HR
+vlan 30
+name ACC
+exit
+interface range fastethnert 0/4-24shutdown
+
+...............................
+Switch HR
+..........
+enable
+Conf terminal
+vtp mode client
+exit
+interface range fastEthernet 0/ 2-3 
+switchport mode access
+switchport access vlan 20
+switchport port-security
+switchport port-security mac-address sticky
+exit
+switchport port-security maximum 1
+switchport port violation shutdown
+exit
+interface range fastethnert 0/4-24shutdown
+
+..................
+Switch ACC
+..........
+enable
+conf terminal
+vtp mode Client
+exit
+interface range fastehternet 0/2-3
+switchport mode access
+switchport access vlan 30
+switchport port-security 
+switchport port-security mac-address sticky
+exit
+switchport port-security maximum 1
+switchport port violation shutdown
+exit
+interface range fastethnert 0/4-24shutdown
+
+.......................................
+
+switch IT
+..........
+enable
+conf terminal
+interface fastethnet 0/1
+switchport mode trunk
+exit
+vlan 10
+name IT
+exit
+interface range fastehternet 0/2-3
+switchport mode access
+switchport access vlan 10
+switchport port-security 
+switchport port-security mac-address sticky
+exit
+switchport port-security maximum 1
+switchport port-security violation shutdown
+exit
+interface range fastethnert 0/4-24shutdown
+
+..................................................
+switch between server and router
+.............................
+enable 
+conf terminal
+interface fastethnernet 0/1
+switchport mode trunk
+exit
+vlan 40
+name Admin
+interface fastethnet 0/1
+
+switchport mode access
+switchport access vlan 40
+
+switchport port-security
+switchport port-security mac-address sticky
+exit
+switchport port-security maximum 1
+switchport port-security violation shutdown
+exit
+interface fastethnet 0/3
+switchport mode access
+switchport access vlan 40
+exit
+interface range fastethnert 0/4-24shutdown
+exit
+
+.......................
+Router 2
+.......
+
+enable
+conf term
+interface fastethnert 0/0
+NOTE: put the interface between router and switch the mode must be trunk 
+no shutdown
+exit
+interface fastethnernet 0/0.20
+encapsulation dot1Q 20
+ip address 192.168.1.65 255.255.255.224
+exit
+interface fastethnernet 0/0.30
+encapsulation dot1Q 30
+ip address 192.168.1.97 255.255.255.224
+exit
+router rip 
+version 2
+network 192.168.1.0
+network 192.168.1.64
+network 192.168.1.96
+exit
+interface serial 1/0 
+ip address 192.168.1.1 255.255.255.224
+no shutdown
+exit
+interface fast ethernet 0/0.30
+ip helper-address 192.168.1.130 
+n
+............................................
+Router 1
+..........
+enable 
+conf terminal
+interface range fastethnernet 0/0-1
+no shutdown
+exit
+interface fast ethernet 0/1.10
+encapsulation dot1Q 10
+ip address 192.168.1.33 255.255.255.224
+exit
+interface fast ethernet 0/0.40
+encapsulation dotQ 40
+ip address 192.168.1.129 255.255.255.224
+exit
+router rip
+version 2
+network 192.168.1.0
+network 192.168.1.32
+network 192.168.1.128
+exit
+interface serial 1/0 
+ip address 192.168.1.2 255.255.255.224
+no shutdown
+exit
+interface fast ethernet 0/1.10
+ip helper-address 192.168.1.130 
+
+
+...............
+server
+......
+DHCP
+set ip 192.168.1.130
+subnet 255.255.255.224
+gateway 192.168.1.129
+DNS 192.168.1.129
+go to service swtich ON
+port name: VlanAdmin
+Default Gateway:192.168.1.129
+DNS Server :192.168.1.129
+Maximum Number of users: 28 (32-1(server)-1(broadcast)-1
+add other
+vlan IT
+192.168.1.33
+start IP 192.168.1.35
+add
+serverpool
+0.0.0.0
+0.0.0.0
+add
+vlnahr
+192.168.1.65
+192.168.1.65
+
+start 192.168.1.67
+add
+vlan AC
+192.168.1.97
+192.168.1.97
+Maximum Number of users: 28 
+start ip 192.168.1.99
+add
+................................
+swtich between HR and ACC (SSH)
+enable
+conf term
+line vty 0 1
+login local
+transport input ssh
+transport outpout ssh
+exit
+username ridox secret ridox
+hostname r30
+ip domain-name cisco.com
+crypto key generate rsa
+enter
+interface vlan 30
+ip address 192.168.1.98 255.255.255.224
+no shutdown
+exit
+enable secret ridox
+............................
+switch of HR
+conf t
+line vty 0 1
+login 
+password ridox
+exit
+interface vlan 20
+ip addrssess 192.168.1.66 255.255.255.224
+no shutdown
+.......................
+swtich of IT
+enable
+conf term
+line vty 0 1
+login local
+transport input ssh
+transport output ssh
+exit
+username ridox secret ridox
+hostname r10
+ip domain-name cisco.com
+crypto key generate rsa
+enter
+interface vlan 10
+ip addresss 192.168.1.34 255.255.255.224 
+no shutdown
+exit
+.............
+swtich of server
+enable
+conf term
+line vty 0 1
+login local
+transport input ssh
+transport output ssh
+exit
+username ridox secret ridox
+hostname r10
+ip domain-name cisco.com
+crypto key generate rsa
+enter
+interface vlan 40
+ip addresss 192.168.1.131 255.255.255.224 
+no shutdown
+exit
+
+.........................
+ssh router 2
+
+enable
+conf ter 
+enable secret ridox
+line vty 0 1
+login local
+transport input ssh
+transport output ssh
+exit
+username ridox secret ridox
+hostname r2
+ip domin-name cisco.com
+crypto key generate rsa
+go to pc :
+ssh -l ridox (exit interface) 
+
+
+telnet router 1
+enable
+conf ter 
+enable secret ridox
+line vty 0 1
+login 
+password ridox
+
+go to pc  
+telnet 192.168.1.129(telnet-exit interface)
+
+
+go server add username ridox password ridox   set all permission and click Add
+
+
+Router 1 FTP
+enable
+conf t
+ ip ftp username ridox 
+password ridox
+exit
+coppy-running config ftp :
+192.168.1.130(server)
+backup1
+enter
+enter
+exit
+.......................................................................
+-----------------------------------------------------------------------------------
+STP: Spanning Tree Protocol (Switch)
+----------------------------
+en
+show spanning-tree
+conf t
+spanning-tree vlan 1 priority 50 (any number)
+it will give the allowed number (choose the last one of them or any one)
+
+interface range f0/1-24
+spanning-tree portfast (faster all the ports on switch)
+
+
+interface f0/1 
+spanning-tree bpduguard enable (avoid switches to connect to each others)
+
+
+----------------------------------------
+VSTP and RSTP and PVSTP
+-------------------------
+first mode trunk between all switches
+create vlans on all switches
+spanning-tree vlan 10 root primary
+
+
+------------------------------------------------------
+in stp
+listing --> 15 second
+learning ---> 15 second
+forwarded --> 6 second
+RSTP (Rapid stp)
+listing doesnot exist
+learning ---> 15 second
+fowarded ---> 6 second
+
+en 
+conf t
+spanning-tree mode rapid-pvst
+interface range f0/1-2
+spanning-tree portfast (in all switches)
+
+
+----------------------------------------------------
+OSI Model
+----------
+OSI model (Open System Interconnection)
+physical : binary,hubs,repeaters
+datalink : framerelay,switches,atm,ethernet
+network : ipv4 ipv6 ipx ipsec routers
+transport : tcp,udp,spx
+session : control sessions between applications
+presentation : ascii,gif,mpeg
+application : ftp,dns,http,dhcp,telnet
+----------------------------------------------------------
+Voice Over IP
+--------------
+vlan 10
+name data
+vlan 20
+name voice
+vlan 30 
+name management
+vlan 50
+name native (mas2ule la t3arref l router ayeha voice w ayeha data )
+
+interface fast 0/1 (interface for switch men maylet l switch)
+switchport mode trunk
+switchport trunk native vlan 50
+exit
+interface range fast 0/2-4
+switchport mode access (ports to computers)
+switchport access vlan 10
+switchport voice vlan 20
+
+In router
+----------
+en
+conf t
+interface fast0/0.10
+encapsulation dot1q 10
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+interface fast 0/0.20
+encapsulation dot1q 20
+ip address 192.168.2.1 255.255.255.0
+no shutdown
+interface fast 0/0.50
+encapsulation dot1q 50 native
+exit
+
+ip dhcp execluded-address 192.168.1.1 192.168.1.10
+ip dhcp execluded-address 192.168.2.1 192.168.2.10
+
+ip dhcp pool data
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+exit
+ip dhcp pool voi
+network 192.168.2.0 255.255.255.0
+default-router 192.168.2.1
+option 150 (port for voice) ip 192.168.2.1
+exit
+interface fast0/0
+no shutdown
+
+------------------------------------
+ether channel
+--------------
+types of ether channel
+1.lacp (link aggregation control protocol) (for cisco and other switches)
+2.pagp (port aggregation protocol) (just for cisco switches)
+3.static (only other switches)
+
+
+example lacp
+-------------
+first switch
+-------------
+en
+conf t
+interface range fast0/1-2
+switchport mode trunk
+channel-group 1 mode active
+exit
+interface port-channel 1
+switch port mode trunk
+
+second switch
+--------------
+en
+conf t
+interface range fast0/1-2
+switchport mode trunk
+channel-group 1 mode passive 
+exit
+interface port-channel 1
+switchport mode trunk
+exit
+exit
+show etherchannel summary
+-------------------------------------
+example pagp
+-------------
+switch 1
+--------
+en
+conf t
+interface range fast0/1-2
+switchport mode trunk
+channel-group 1 mode desirable 
+exit
+interface port-channel 1
+switchport mode trunk
+
+switch 2
+---------
+en
+conf t
+interface range fast0/1-2
+switchport mode trunk
+channel-group 1 mode auto 
+exit
+interface port-channel 1
+switchport mode trunk
+
+------------------------------------------------------------
+in multi layer switch
+use this command same as above but add this command
+switchport trunk encapsulation dot1q (in interface portchannel 1)
+----------------------------------------------------------------------
+multilayer switch
+-------------------
+first multilayer switch
+------------------------
+en
+conf t
+ip routing
+interface range fast0/3-4 
+channel-group 1 mode on
+exit
+interface port-channel 2
+no switchport
+ip address 10.10.10.2 255.255.255.252 10.10.10.2 (heda ip l port li betru7 menno)
+no shutdown
+ip route (ip for other network + subnetmask 3a ayya netwrok badak tru7)
+
+same commmands on the second multilayer switch
+
